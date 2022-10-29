@@ -1,0 +1,14 @@
+name: Deploy advice-generator-app on Vercel
+on:
+  push:
+    paths:
+      - "packages/advice-generator-app/**"
+
+jobs:
+  run-example-deployment:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build & Deploy
+        run: "vercel packages/advice-generator-app --prod --yes --token ${{ secrets.VERCEL_TOKEN }}"
