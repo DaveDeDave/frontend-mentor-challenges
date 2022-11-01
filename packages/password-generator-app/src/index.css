@@ -1,3 +1,13 @@
 :root {
-  --blue: #1e90ff;
+  --blue-light: #24232b;
+  --blue-dark: #0f0e14;
+  --blue-alternative: #18171f;
+  --grey: #4e4f56;
+  --grey-light: #727e7b;
+  --green: #a4ffaf;
+  --light: #e3e2e9;
+}
+
+body {
+  margin: 0;
 }
