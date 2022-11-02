@@ -12,4 +12,9 @@ const Flex = styled.div`
   ${(props) => sx(props)};
 `;
 
-export { Flex };
+const Box = styled.div`
+  ${(props) => common(props)};
+  ${(props) => sx(props)};
+`;
+
+export { Flex, Box };

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Text, SliderInput, Checkbox } from "./components/Components";
+import StrengthMeter from "./components/custom/StrengthMeter";
 import { CopyIcon } from "./components/Icons";
 import { Flex } from "./components/Layout";
+import { generatePassword } from "./util/lib";
 
 const Wrapper = ({ children }) => (
   <Flex
@@ -29,12 +31,43 @@ const IconWrapper = styled.div`
 export default function App() {
   const [password, setPassword] = useState("");
   const [factors, setFactors] = useState([
-    "Include Uppercase Letters",
-    "Include Lowercase Letters",
-    "Include Numbers",
-    "Include Symbols"
+    {
+      enabled: true,
+      text: "Include Uppercase Letters"
+    },
+    {
+      enabled: false,
+      text: "Include Lowercase Letters"
+    },
+    {
+      enabled: false,
+      text: "Include Numbers"
+    },
+    {
+      enabled: false,
+      text: "Include Symbols"
+    }
   ]);
+  const [factorsChanged, setFactorsChanged] = useState(0);
   const [length, setLength] = useState(6);
+  const [strength, setStrength] = useState(1);
+
+  const updateFactor = (i, enabled) => {
+    setFactors((factors) => {
+      factors[i].enabled = enabled;
+      return factors;
+    });
+    setFactorsChanged(factorsChanged + 1);
+  };
+
+  useEffect(() => {
+    let points = 0;
+    if (length >= 6) points++;
+    factors.forEach((factor) => {
+      if (factor.enabled) points++;
+    });
+    setStrength(points);
+  }, [length, factorsChanged]);
 
   return (
     <Wrapper>
@@ -75,21 +108,29 @@ export default function App() {
               {length}
             </Text>
           </Flex>
-          <SliderInput updateLength={setLength} />
+          <SliderInput max={23} updateLength={setLength} />
           <Flex direction="column" gap="0.4rem">
-            {factors.map((_, key) => (
+            {factors.map((factor, key) => (
               <div key={key}>
-                <Checkbox id={`password-factor-${key}`}></Checkbox>
-                <label htmlFor={`password-factor-${key}`}>
-                  Include Uppercase Letters
-                </label>
+                <Checkbox
+                  id={`password-factor-${key}`}
+                  checked={factor.enabled}
+                  onChange={(e) => updateFactor(key, e.target.checked)}
+                ></Checkbox>
+                <label htmlFor={`password-factor-${key}`}>{factor.text}</label>
               </div>
             ))}
           </Flex>
-          <Flex p="1.2rem" bg="var(--blue-alternative)">
-            <Text size=".8rem" weight="600" color="var(--grey)">
+          <Flex align="center" p="1rem" bg="var(--blue-alternative)">
+            <Text
+              size=".8rem"
+              weight="600"
+              color="var(--grey)"
+              sx={{ flex: 1 }}
+            >
               STRENGTH
             </Text>
+            <StrengthMeter strength={strength} />
           </Flex>
           <Button
             py="0.9rem"
@@ -102,6 +143,17 @@ export default function App() {
             active-transform="translateY(1px)"
             sx={{
               "font-weight": 600
+            }}
+            onClick={() => {
+              setPassword(
+                generatePassword(
+                  length,
+                  factors[0].enabled,
+                  factors[1].enabled,
+                  factors[2].enabled,
+                  factors[3].enabled
+                )
+              );
             }}
           >
             GENERATE →

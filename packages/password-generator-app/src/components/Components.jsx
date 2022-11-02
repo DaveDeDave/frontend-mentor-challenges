@@ -90,8 +90,13 @@ const Checkbox = styled.input.attrs({ type: "checkbox" })`
   cursor: pointer;
   border-radius: 0.1rem;
   background-color: transparent;
-  border: 0.1rem solid var(--green);
+  border: 0.1rem solid var(--light);
+  transition: border 0.1s;
+  &:hover {
+    border: 0.1rem solid var(--green);
+  }
   &:checked {
+    border: 0.1rem solid var(--green);
     background-color: var(--green);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='-1 -2 24 24' stroke-width='5' stroke='currentColor' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5' /%3E%3C/svg%3E");
     background-repeat: no-repeat;
