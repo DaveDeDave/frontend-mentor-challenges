@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { common, sx } from "../util/props";
 
@@ -16,4 +17,85 @@ const Text = styled.p`
   ${(props) => sx(props)}
 `;
 
-export { Button, Text };
+const Slider = styled.input.attrs({ type: "range" })`
+  -webkit-appearance: none;
+
+  background-image: linear-gradient(
+    to right,
+    var(--green) 50%,
+    var(--blue-dark) 0%
+  );
+  background-repeat: no-repeat;
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.3rem;
+
+    cursor: pointer;
+    animate: 0.2s;
+  }
+
+  &::-webkit-slider-thumb {
+    height: 1.1rem;
+    width: 1.1rem;
+    border-radius: 1rem;
+    background: var(--light);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+  }
+
+  &::-webkit-slider-thumb:active {
+    background: var(--blue-dark);
+    border: 0.15rem solid var(--green);
+  }
+`;
+
+function SliderInput({ min = 0, max = 10, step = 1, updateLength }) {
+  const sliderRef = useRef(null);
+  const [values] = useState(max - min);
+
+  const calculatePercentage = (currentValue) => {
+    return ((currentValue - min) / values) * 100;
+  };
+
+  useEffect(() => {
+    const percentage = calculatePercentage(sliderRef.current.value);
+    sliderRef.current.style.backgroundImage = `linear-gradient(to right, var(--green) ${percentage}%, var(--blue-dark) 0%)`;
+  });
+
+  return (
+    <Slider
+      ref={sliderRef}
+      min={min}
+      max={max}
+      step={step}
+      onChange={(e) => {
+        updateLength(e.target.value);
+        const percentage = calculatePercentage(e.target.value);
+        e.target.style.backgroundImage = `linear-gradient(to right, var(--green) ${percentage}%, var(--blue-dark) 0%)`;
+      }}
+    />
+  );
+}
+
+const Checkbox = styled.input.attrs({ type: "checkbox" })`
+  -webkit-appearance: none;
+  -webkit-transition: 0.1s;
+  height: 0.9em;
+  width: 0.9em;
+  margin-right: 1rem;
+  margin-bottom: auto;
+  margin-top: auto;
+  cursor: pointer;
+  border-radius: 0.1rem;
+  background-color: transparent;
+  border: 0.1rem solid var(--green);
+  &:checked {
+    background-color: var(--green);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='-1 -2 24 24' stroke-width='5' stroke='currentColor' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+  }
+`;
+
+export { Button, Text, SliderInput, Checkbox };

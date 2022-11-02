@@ -35,6 +35,15 @@ const common = (props) => `
   max-height: ${props["max-h"] ?? ""};
   background-color: ${props.bg ?? ""};
   color: ${props.color ?? ""};
+  transition: ${props.transition ?? ""};
+  &:hover {
+    background-color: ${props["hover-bg"] ?? ""};
+    color: ${props["hover-color"] ?? ""};
+    outline: ${props["hover-outline"] ?? ""};
+  }
+  &:active {
+    transform: ${props["active-transform"] ?? ""};
+  }
 `;
 
 export { common, sx };

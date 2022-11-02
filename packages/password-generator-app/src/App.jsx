@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, Text } from "./components/Components";
+import { Button, Text, SliderInput, Checkbox } from "./components/Components";
 import { CopyIcon } from "./components/Icons";
 import { Flex } from "./components/Layout";
 
@@ -18,13 +18,13 @@ const Wrapper = ({ children }) => (
 
 const IconWrapper = styled.div`
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 0.1s, color 0.1s;
+  color: var(--green);
   &:hover {
-    transform: scale(1.2);
+    color: var(--light);
+    transform: scale(1.1);
   }
 `;
-
-const Slider = styled.input``;
 
 export default function App() {
   const [password, setPassword] = useState("");
@@ -34,6 +34,7 @@ export default function App() {
     "Include Numbers",
     "Include Symbols"
   ]);
+  const [length, setLength] = useState(6);
 
   return (
     <Wrapper>
@@ -56,7 +57,7 @@ export default function App() {
             {password != "" ? password : "P4$5W0rD!"}
           </Text>
           <IconWrapper>
-            <CopyIcon size="1.25rem" color="var(--green)" />
+            <CopyIcon size="1.25rem" />
           </IconWrapper>
         </Flex>
         <Flex
@@ -66,21 +67,25 @@ export default function App() {
           bg="var(--blue-light)"
           color="var(--light)"
         >
-          <Flex>
-            <Text sx={{ flex: 1 }}>Character Length</Text>
-            <Text>0</Text>
+          <Flex align="center">
+            <Text size="0.85rem" sx={{ flex: 1 }}>
+              Character Length
+            </Text>
+            <Text size="1.4rem" color="var(--green)">
+              {length}
+            </Text>
           </Flex>
-          <Slider type="range" />
-          <div>
+          <SliderInput updateLength={setLength} />
+          <Flex direction="column" gap="0.4rem">
             {factors.map((_, key) => (
               <div key={key}>
-                <input id={`password-factor-${key}`} type="checkbox"></input>
-                <label for={`password-factor-${key}`}>
+                <Checkbox id={`password-factor-${key}`}></Checkbox>
+                <label htmlFor={`password-factor-${key}`}>
                   Include Uppercase Letters
                 </label>
               </div>
             ))}
-          </div>
+          </Flex>
           <Flex p="1.2rem" bg="var(--blue-alternative)">
             <Text size=".8rem" weight="600" color="var(--grey)">
               STRENGTH
@@ -90,7 +95,11 @@ export default function App() {
             py="0.9rem"
             rounded="0.25rem"
             bg="var(--green)"
+            hover-bg="transparent"
             color="var(--blue-alternative)"
+            hover-color="var(--green)"
+            hover-outline="1px solid var(--green)"
+            active-transform="translateY(1px)"
             sx={{
               "font-weight": 600
             }}
