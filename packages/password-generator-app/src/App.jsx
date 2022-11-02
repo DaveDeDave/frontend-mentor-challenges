@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Text, SliderInput, Checkbox } from "./components/Components";
 import StrengthMeter from "./components/custom/StrengthMeter";
-import { CopyIcon } from "./components/Icons";
+import { ArrowRightIcon, CopyIcon } from "./components/Icons";
 import { Flex } from "./components/Layout";
 import { generatePassword } from "./util/lib";
 
 const Wrapper = ({ children }) => (
   <Flex
-    direction="row"
+    direction="column"
     justify="center"
     align="center"
     bg="var(--blue-dark)"
@@ -22,6 +22,7 @@ const IconWrapper = styled.div`
   cursor: pointer;
   transition: transform 0.1s, color 0.1s;
   color: var(--green);
+  margin-top: auto;
   &:hover {
     color: var(--light);
     transform: scale(1.1);
@@ -71,6 +72,13 @@ export default function App() {
 
   return (
     <Wrapper>
+      <Text
+        color="var(--grey-light)"
+        weight="600"
+        sx={{ "margin-bottom": "1rem" }}
+      >
+        Password Generator
+      </Text>
       <Flex direction="column" gap="1rem" max-w="325px" w="100%">
         <Flex
           direction="row"
@@ -89,7 +97,16 @@ export default function App() {
           >
             {password != "" ? password : "P4$5W0rD!"}
           </Text>
-          <IconWrapper>
+          <IconWrapper
+            onClick={() => {
+              const copy = document.createElement("textarea");
+              document.body.appendChild(copy);
+              copy.value = password;
+              copy.select();
+              document.execCommand("copy");
+              document.body.removeChild(copy);
+            }}
+          >
             <CopyIcon size="1.25rem" />
           </IconWrapper>
         </Flex>
@@ -101,7 +118,7 @@ export default function App() {
           color="var(--light)"
         >
           <Flex align="center">
-            <Text size="0.85rem" sx={{ flex: 1 }}>
+            <Text size="0.8rem" sx={{ flex: 1 }}>
               Character Length
             </Text>
             <Text size="1.4rem" color="var(--green)">
@@ -109,7 +126,7 @@ export default function App() {
             </Text>
           </Flex>
           <SliderInput max={23} updateLength={setLength} />
-          <Flex direction="column" gap="0.4rem">
+          <Flex direction="column" gap="0.35rem">
             {factors.map((factor, key) => (
               <div key={key}>
                 <Checkbox
@@ -117,14 +134,20 @@ export default function App() {
                   checked={factor.enabled}
                   onChange={(e) => updateFactor(key, e.target.checked)}
                 ></Checkbox>
-                <label htmlFor={`password-factor-${key}`}>{factor.text}</label>
+                <Text
+                  as="label"
+                  size="0.8rem"
+                  htmlFor={`password-factor-${key}`}
+                >
+                  {factor.text}
+                </Text>
               </div>
             ))}
           </Flex>
           <Flex align="center" p="1rem" bg="var(--blue-alternative)">
             <Text
-              size=".8rem"
-              weight="600"
+              size=".75rem"
+              weight="700"
               color="var(--grey)"
               sx={{ flex: 1 }}
             >
@@ -156,7 +179,8 @@ export default function App() {
               );
             }}
           >
-            GENERATE →
+            &nbsp; GENERATE &nbsp;
+            <ArrowRightIcon size="1rem" />
           </Button>
         </Flex>
       </Flex>

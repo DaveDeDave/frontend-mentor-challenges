@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
 :root {
   --blue-light: #24232b;
   --blue-dark: #0f0e14;
@@ -10,4 +12,5 @@
 
 body {
   margin: 0;
+  font-family: "Space Mono", monospace;
 }
