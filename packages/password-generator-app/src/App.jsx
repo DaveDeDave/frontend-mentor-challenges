@@ -23,6 +23,7 @@ const IconWrapper = styled.div`
   transition: transform 0.1s, color 0.1s;
   color: var(--green);
   margin-top: auto;
+  padding-left: 0.5rem;
   &:hover {
     color: var(--light);
     transform: scale(1.1);
@@ -92,7 +93,8 @@ export default function App() {
             weight="600"
             size="1.3rem"
             sx={{
-              flex: 1
+              flex: 1,
+              overflow: "hidden"
             }}
           >
             {password != "" ? password : "P4$5W0rD!"}

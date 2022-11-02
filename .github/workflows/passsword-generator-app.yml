@@ -1,8 +1,8 @@
-name: Deploy advice-generator-app on Vercel
+name: Deploy password-generator-app on Vercel
 on:
   push:
     paths:
-      - "packages/advice-generator-app/**"
+      - "packages/password-generator-app/**"
 
 jobs:
   run-deployment:
@@ -13,4 +13,4 @@ jobs:
       - name: Install vercel cli
         run: npm i -g vercel
       - name: Build & Deploy
-        run: "vercel packages/advice-generator-app --prod --yes --token ${{ secrets.VERCEL_TOKEN }}"
+        run: "vercel packages/password-generator-app --prod --yes --token ${{ secrets.VERCEL_TOKEN }}"
