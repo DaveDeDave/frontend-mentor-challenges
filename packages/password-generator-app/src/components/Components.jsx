@@ -17,9 +17,30 @@ const Text = styled.p`
   ${(props) => sx(props)}
 `;
 
+const trackStyle = css`
+  width: 100%;
+  height: 0.3rem;
+  cursor: pointer;
+  animate: 0.2s;
+`;
+const thumbStyle = css`
+  height: 1.1rem;
+  width: 1.1rem;
+  border-radius: 1rem;
+  background: var(--light);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6px;
+`;
+
+const activeThumbStyle = css`
+  background: var(--blue-dark);
+  border: 0.15rem solid var(--green);
+`;
+
 const Slider = styled.input.attrs({ type: "range" })`
   -webkit-appearance: none;
-
+  height: 0.3rem;
   background-image: linear-gradient(
     to right,
     var(--green) 50%,
@@ -28,26 +49,33 @@ const Slider = styled.input.attrs({ type: "range" })`
   background-repeat: no-repeat;
 
   &::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 0.3rem;
-
-    cursor: pointer;
-    animate: 0.2s;
+    ${trackStyle}
+  }
+  &::-moz-range-track {
+    ${trackStyle}
+  }
+  &::-ms-track {
+    ${trackStyle}
   }
 
   &::-webkit-slider-thumb {
-    height: 1.1rem;
-    width: 1.1rem;
-    border-radius: 1rem;
-    background: var(--light);
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -6px;
+    ${thumbStyle}
+  }
+  &::-moz-range-thumb {
+    ${thumbStyle}
+  }
+  &::-ms-thumb {
+    ${thumbStyle}
   }
 
   &::-webkit-slider-thumb:active {
-    background: var(--blue-dark);
-    border: 0.15rem solid var(--green);
+    ${activeThumbStyle}
+  }
+  &::-moz-range-thumb:active {
+    ${activeThumbStyle}
+  }
+  &::-ms-thumb:active {
+    ${activeThumbStyle}
   }
 `;
 
@@ -101,6 +129,11 @@ const Checkbox = styled.input.attrs({ type: "checkbox" })`
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='-1 -2 24 24' stroke-width='5' stroke='currentColor' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5' /%3E%3C/svg%3E");
     background-repeat: no-repeat;
   }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export { Button, Text, SliderInput, Checkbox };
