@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - "packages/password-generator-app/**"
+      - "!packages/advice-generator-app/README.md"
 
 jobs:
   run-deployment:
