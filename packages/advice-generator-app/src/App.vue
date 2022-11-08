@@ -6,11 +6,20 @@
     fetchAdvice();
   });
 
+  const between = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1) + min);
+
   const fetchAdvice = async () => {
     loading.value = 90;
-    const response = await fetch("https://api.adviceslip.com/advice");
+    const response = await fetch(
+      `https://api.adviceslip.com/advice/${between(1, 200)}`
+    );
     const result = await response.json();
-    if (id.value == result.slip.id) return fetchAdvice();
+    if (id.value == result.slip.id) {
+      return setTimeout(() => {
+        fetchAdvice();
+      }, 100);
+    }
     id.value = result.slip.id;
     advice.value = result.slip.advice;
     loading.value = 100;
@@ -51,8 +60,11 @@
           class="absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-1/2 flex-row justify-center"
         >
           <div
-            @click="fetchAdvice"
-            :disabled="loading != 0"
+            @click="
+              () => {
+                if (loading == 0) fetchAdvice();
+              }
+            "
             class="shadow-glow rounded-full bg-green-neon p-5 shadow-green-neon transition duration-200"
             :class="{
               'hover:cursor-not-allowed': loading,
