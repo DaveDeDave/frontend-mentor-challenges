@@ -4,7 +4,7 @@
   const articles = reactive([
     {
       title: "Hydrogen VS Electric Cars",
-      description: "Will hydrogen-fueled cars ever catch uup to EVs?"
+      description: "Will hydrogen-fueled cars ever catch up to EVs?"
     },
     {
       title: "The Downsides of AI Artistry",
@@ -20,11 +20,11 @@
 </script>
 
 <template>
-  <div class="flex flex-col bg-very-dark-blue py-6 px-4">
-    <div class="mb-8 md:mb-0">
+  <div class="flex flex-col bg-very-dark-blue px-4 py-4 lg:px-6 lg:py-6">
+    <div class="lg:mb-0">
       <h2 class="text-4xl font-bold text-soft-orange">New</h2>
     </div>
-    <div class="flex flex-1 flex-col justify-center gap-4 py-8">
+    <div class="flex flex-1 flex-col justify-center gap-8 pt-4">
       <template v-for="({ title, description }, i) in articles">
         <div class="news hover:cursor-pointer">
           <h3
@@ -32,9 +32,9 @@
           >
             {{ title }}
           </h3>
-          <h5 class="text-sm text-dark-grayish-blue">{{ description }}</h5>
+          <h5 class="text-sm text-grayish-blue">{{ description }}</h5>
         </div>
-        <hr v-if="i + 1 < articles.length" />
+        <hr v-if="i + 1 < articles.length" class="border-dark-grayish-blue" />
       </template>
     </div>
   </div>

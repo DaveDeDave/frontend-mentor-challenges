@@ -5,9 +5,11 @@
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 py-12 md:flex-row">
-    <Information />
-    <NewArticles />
-  </div>
-  <Articles />
+  <main>
+    <div class="flex flex-col gap-6 py-12 lg:flex-row">
+      <Information />
+      <NewArticles />
+    </div>
+    <Articles />
+  </main>
 </template>

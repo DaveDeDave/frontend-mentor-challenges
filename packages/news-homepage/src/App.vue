@@ -28,8 +28,8 @@
 </script>
 
 <template>
-  <div class="h-screen bg-off-white py-4 px-4 md:py-16">
-    <div class="mx-auto max-w-5xl">
+  <div class="h-screen bg-off-white py-4 px-4 lg:py-16">
+    <div class="mx-auto max-w-[1050px]">
       <Header :links="links" />
       <Home />
     </div>
