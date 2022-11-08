@@ -35,7 +35,7 @@
     <div class="hidden lg:block">
       <ul class="flex flex-row gap-6">
         <li v-for="{ label, path } in links">
-          <NavLink :path="path" :label="label" />
+          <NavLink :path="path" :label="label" class="text-dark-grayish-blue" />
         </li>
       </ul>
     </div>
