@@ -6,6 +6,7 @@ This repository contains some of the challeges of Frontend Mentor website i've d
 
 - [Advice Generator App](https://github.com/DaveDeDave/frontend-mentor-challenges/tree/main/packages/advice-generator-app)
 - [Password Generator App](https://github.com/DaveDeDave/frontend-mentor-challenges/tree/main/packages/password-generator-app)
+- [News Homepage](https://github.com/DaveDeDave/frontend-mentor-challenges/tree/main/packages/news-homepage)
 
 ### Preview
 

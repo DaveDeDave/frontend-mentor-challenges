@@ -1,0 +1,17 @@
+name: Deploy news-homepage on Vercel
+on:
+  push:
+    paths:
+      - "packages/news-homepage/**"
+      - "!packages/news-homepage/README.md"
+
+jobs:
+  run-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install vercel cli
+        run: npm i -g vercel
+      - name: Build & Deploy
+        run: "vercel packages/news-homepage --prod --yes --token ${{ secrets.VERCEL_TOKEN }}"
