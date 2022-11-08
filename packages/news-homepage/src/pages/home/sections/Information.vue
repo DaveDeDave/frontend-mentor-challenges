@@ -27,7 +27,7 @@
         </div>
         <div>
           <button
-            class="mt-4 bg-very-dark-blue px-8 py-[0.90rem] font-mono text-paragraph text-white transition hover:bg-soft-red"
+            class="mt-4 bg-soft-red px-8 py-[0.90rem] font-mono text-paragraph text-white transition hover:bg-very-dark-blue"
           >
             R E A D &nbsp;M O R E
           </button>
