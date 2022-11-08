@@ -14,8 +14,8 @@
       />
     </div>
     <div class="flex flex-col gap-1 py-8 lg:flex-row">
-      <div class="py-2 text-5xl font-extrabold lg:max-w-xs">
-        The Bright Future of Web 3.0?
+      <div class="py-2 lg:max-w-xs">
+        <h1 class="text-5xl font-extrabold">The Bright Future of Web 3.0?</h1>
       </div>
       <div class="flex flex-1 flex-col">
         <div class="flex-1">

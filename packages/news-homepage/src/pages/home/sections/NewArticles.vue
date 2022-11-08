@@ -32,7 +32,9 @@
           >
             {{ title }}
           </h3>
-          <h5 class="text-sm text-grayish-blue">{{ description }}</h5>
+          <p class="text-sm text-grayish-blue">
+            {{ description }}
+          </p>
         </div>
         <hr v-if="i + 1 < articles.length" class="border-dark-grayish-blue" />
       </template>

@@ -29,9 +29,11 @@
       <div class="flex flex-row gap-4">
         <img :src="src" class="h-36" height="25" alt="Article image" />
         <div class="flex flex-col gap-2">
-          <p class="text-3xl font-bold text-grayish-blue">{{ `0${i + 1}` }}</p>
+          <h2 class="text-3xl font-bold text-grayish-blue">
+            {{ `0${i + 1}` }}
+          </h2>
           <h4 class="article-title font-extrabold transition">{{ title }}</h4>
-          <h5 class="">{{ description }}</h5>
+          <p class="text-paragraph">{{ description }}</p>
         </div>
       </div>
     </div>
