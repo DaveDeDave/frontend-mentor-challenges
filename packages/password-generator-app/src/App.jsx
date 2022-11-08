@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Text, SliderInput, Checkbox } from "./components/Components";
 import StrengthMeter from "./components/custom/StrengthMeter";
-import { ArrowRightIcon, CopyIcon } from "./components/Icons";
+import { ArrowRightIcon, CheckIcon, CopyIcon } from "./components/Icons";
 import { Flex } from "./components/Layout";
 import { generatePassword } from "./util/lib";
 
@@ -27,6 +27,9 @@ const IconWrapper = styled.div`
   &:hover {
     color: var(--light);
     transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(1.1) translateY(1px);
   }
 `;
 
@@ -53,6 +56,8 @@ export default function App() {
   const [factorsChanged, setFactorsChanged] = useState(0);
   const [length, setLength] = useState(6);
   const [strength, setStrength] = useState(1);
+  const [copied, setCopied] = useState(false);
+  const [copiedTimeout, setCopiedTimeout] = useState(null);
 
   const updateFactor = (i, enabled) => {
     setFactors((factors) => {
@@ -101,6 +106,13 @@ export default function App() {
           </Text>
           <IconWrapper
             onClick={() => {
+              setCopied(true);
+              if (copiedTimeout != null) clearTimeout(copiedTimeout);
+              const timeout = setTimeout(() => {
+                setCopied(false);
+                setCopiedTimeout(null);
+              }, 2000);
+              setCopiedTimeout(timeout);
               const copy = document.createElement("textarea");
               document.body.appendChild(copy);
               copy.value = password;
@@ -109,7 +121,11 @@ export default function App() {
               document.body.removeChild(copy);
             }}
           >
-            <CopyIcon size="1.25rem" />
+            {copied ? (
+              <CheckIcon color="var(--green)" size="1.25rem" />
+            ) : (
+              <CopyIcon size="1.25rem" />
+            )}
           </IconWrapper>
         </Flex>
         <Flex
