@@ -6,19 +6,14 @@
     fetchAdvice();
   });
 
-  const between = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1) + min);
-
   const fetchAdvice = async () => {
     loading.value = 90;
-    const response = await fetch(
-      `https://api.adviceslip.com/advice/${between(1, 200)}`
-    );
+    const response = await fetch("https://api.adviceslip.com/advice");
     const result = await response.json();
     if (id.value == result.slip.id) {
       return setTimeout(() => {
         fetchAdvice();
-      }, 100);
+      }, 2000);
     }
     id.value = result.slip.id;
     advice.value = result.slip.advice;
