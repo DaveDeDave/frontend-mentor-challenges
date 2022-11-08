@@ -19,7 +19,7 @@
       </div>
       <div class="flex flex-1 flex-col">
         <div class="flex-1">
-          <p class="text-paragraph">
+          <p class="text-paragraph text-dark-grayish-blue">
             We dive into the next evolution of the web that claims to put the
             power of the platforms back into the hands of the people. But is it
             really fulfilling its promise?
@@ -27,7 +27,7 @@
         </div>
         <div>
           <button
-            class="mt-4 bg-soft-red px-8 py-[0.90rem] font-mono text-paragraph text-white transition hover:bg-very-dark-blue"
+            class="mt-4 bg-soft-red px-8 py-[0.90rem] font-mono text-paragraph font-bold text-white transition hover:bg-very-dark-blue"
           >
             R E A D &nbsp;M O R E
           </button>

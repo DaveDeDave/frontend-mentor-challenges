@@ -32,8 +32,8 @@
           <h2 class="text-3xl font-bold text-grayish-blue">
             {{ `0${i + 1}` }}
           </h2>
-          <h4 class="article-title font-extrabold transition">{{ title }}</h4>
-          <p class="text-paragraph">{{ description }}</p>
+          <h3 class="article-title font-extrabold transition">{{ title }}</h3>
+          <p class="text-paragraph text-dark-grayish-blue">{{ description }}</p>
         </div>
       </div>
     </div>
