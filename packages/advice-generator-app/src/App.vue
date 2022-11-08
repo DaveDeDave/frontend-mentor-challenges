@@ -1,59 +1,74 @@
 <script setup>
-import { ref, onBeforeMount } from "vue";
-import LoadingBar from "./components/LoadingBar.vue";
+  import { ref, onBeforeMount } from "vue";
+  import LoadingBar from "./components/LoadingBar.vue";
 
-onBeforeMount(() => {
-  fetchAdvice();
-});
+  onBeforeMount(() => {
+    fetchAdvice();
+  });
 
-const fetchAdvice = async () => {
-  loading.value = 90;
-  const response = await fetch("https://api.adviceslip.com/advice");
-  const result = await response.json();
-  if (id.value == result.slip.id) return fetchAdvice();
-  id.value = result.slip.id;
-  advice.value = result.slip.advice;
-  loading.value = 100;
-  setTimeout(() => {
-    loading.value = 0;
-  }, 100);
-};
+  const fetchAdvice = async () => {
+    loading.value = 90;
+    const response = await fetch("https://api.adviceslip.com/advice");
+    const result = await response.json();
+    if (id.value == result.slip.id) return fetchAdvice();
+    id.value = result.slip.id;
+    advice.value = result.slip.advice;
+    loading.value = 100;
+    setTimeout(() => {
+      loading.value = 0;
+    }, 100);
+  };
 
-const id = ref("");
-const advice = ref("");
-const loading = ref(0);
+  const id = ref("");
+  const advice = ref("");
+  const loading = ref(0);
 </script>
 
 <template>
-  <LoadingBar :loading="loading" />
-  <div class="flex flex-col flex-1 justify-center items-center bg-blue-dark">
-    <div
-      class="relative flex flex-col gap-7 mx-4 px-6 pt-8 pb-14 max-w-[350px] rounded-lg bg-blue-grayish-dark text-cyan-light text-center"
-    >
-      <div class="text-xs text-green-neon font-">ADVICE # {{ id }}</div>
-      <div class="">"{{ advice }}"</div>
-      <div>
-        <img src="/pattern-divider-desktop.svg" class="hidden sm:block" />
-        <img src="/pattern-divider-mobile.svg" class="sm:hidden" />
-      </div>
+  <main class="flex h-screen">
+    <LoadingBar :loading="loading" />
+    <div class="flex flex-1 flex-col items-center justify-center bg-blue-dark">
       <div
-        class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex flex-row justify-center"
+        class="relative mx-4 flex max-w-[550px] flex-col gap-8 rounded-xl bg-blue-grayish-dark px-6 pt-12 pb-[4.5rem] text-center text-cyan-light sm:px-14"
       >
-        <button
-          @click="fetchAdvice"
-          :disabled="loading != 0"
-          class="bg-green-neon shadow-glow shadow-green-neon p-3 rounded-full transition duration-200"
-          :class="{ 'cursor-not-allowed': loading != 0 }"
+        <div class="font-mono font-bold tracking-[0.2rem] text-green-neon">
+          ADVICE #{{ id }}
+        </div>
+        <h1 class="text-3xl">"{{ advice }}"</h1>
+        <div>
+          <img
+            src="/pattern-divider-desktop.svg"
+            class="hidden w-full sm:block"
+            alt="Pattern divider"
+          />
+          <img
+            src="/pattern-divider-mobile.svg"
+            class="w-full sm:hidden"
+            alt="Pattern divider"
+          />
+        </div>
+        <div
+          class="absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-1/2 flex-row justify-center"
         >
-          <img src="/icon-dice.svg" class="w-5" />
-        </button>
+          <div
+            @click="fetchAdvice"
+            :disabled="loading != 0"
+            class="shadow-glow rounded-full bg-green-neon p-5 shadow-green-neon transition duration-200"
+            :class="{
+              'hover:cursor-not-allowed': loading,
+              'hover:cursor-pointer': !loading
+            }"
+          >
+            <img src="/icon-dice.svg" class="w-6" alt="Dice icon" />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <style>
-.shadow-glow:hover {
-  box-shadow: 0 0 14px 1px #52ffa8;
-}
+  .shadow-glow:hover {
+    box-shadow: 0 0 14px 1px #52ffa8;
+  }
 </style>

@@ -4,17 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#app {
-  height: 100%;
-}
-
 body {
   font-family: "Manrope", sans-serif;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
 }
