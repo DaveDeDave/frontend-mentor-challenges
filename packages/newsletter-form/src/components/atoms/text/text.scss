@@ -1,0 +1,23 @@
+// Paragraph
+.nw-paragraph {
+  margin: 0;
+  font-size: $font-size-paragraph;
+  line-height: $line-height-paragraph;
+  color: $grey-dark-slate;
+}
+
+// Title
+.nw-title {
+  margin: 0;
+  font-size: $font-size-title;
+  font-weight: bold;
+}
+
+// Label
+.nw-label {
+  margin: 0;
+  font-size: $font-size-label;
+  line-height: $line-height-paragraph;
+  color: $grey-dark-slate;
+  font-weight: bold;
+}

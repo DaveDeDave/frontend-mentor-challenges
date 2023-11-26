@@ -1,0 +1,8 @@
+.nw-text-input {
+  padding: $padding-components;
+  border: 2px solid $grey-lighter;
+  border-radius: $border-radius-components;
+  &:focus-visible {
+    outline-color: $grey;
+  }
+}
