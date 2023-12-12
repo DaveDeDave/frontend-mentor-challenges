@@ -1,4 +1,3 @@
-import "./App.css";
 import NewsletterForm from "./components/composed/newsletter-form";
 
 function App() {

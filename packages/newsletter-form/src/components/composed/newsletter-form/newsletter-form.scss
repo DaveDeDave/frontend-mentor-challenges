@@ -12,11 +12,27 @@
   flex-direction: column-reverse;
   background-color: $white;
   flex-grow: 1;
+  padding-top: 75px;
   @media (min-width: $mobileBreakpoint) {
     flex-direction: row;
     flex-grow: 0;
     padding: $padding-containers;
     border-radius: $border-radius;
+  }
+}
+
+.nw-newsletter-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  padding: 20px 20px;
+
+  @media (min-width: $mobileBreakpoint) {
+    flex-grow: 0;
+    justify-content: center;
+    max-width: 350px;
+    padding: 20px 20px;
   }
 }
 
@@ -43,11 +59,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.nw-newsletter-input {
-  display: flex;
-  flex-direction: column;
 }
 
 .nw-image-desktop {

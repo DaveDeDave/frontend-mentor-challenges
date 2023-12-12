@@ -8,8 +8,8 @@ interface ListProps {
 export const List: FC<ListProps> = ({ elements }) => {
   return (
     <ul className="nw-list">
-      {elements.map((element) => (
-        <li className="nw-list-element">
+      {elements.map((element, key) => (
+        <li key={key} className="nw-list-element">
           <span className="nw-list-element-icon">
             <ListIcon />
           </span>

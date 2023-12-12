@@ -1,3 +1,4 @@
 import { ListIcon } from "./ListIcon";
+import { SuccessIcon } from "./SuccessIcon";
 
-export { ListIcon };
+export { ListIcon, SuccessIcon };

@@ -1,8 +1,38 @@
-.nw-text-input {
-  padding: $padding-components;
-  border: 2px solid $grey-lighter;
-  border-radius: $border-radius-components;
-  &:focus-visible {
-    outline-color: $grey;
+.nw-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  transition: color $transition-time, border-color $transition-time;
+
+  .nw-input-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .nw-input-error-text {
+      color: $error-color;
+    }
+  }
+
+  .nw-text-input {
+    font-family: $font-family;
+    padding: $padding-components;
+    border: 1px solid $grey-lighter;
+    border-radius: $border-radius-components;
+    &::placeholder {
+      font-family: $font-family;
+    }
+    &:focus-visible {
+      outline-color: $grey;
+    }
+    &.nw-text-input-error {
+      color: $error-color;
+      background-color: $error-bg-color;
+      border-color: $error-border-color;
+      &:focus-visible {
+        outline-color: $error-border-color;
+      }
+      &::placeholder {
+        color: $error-placeholder-color;
+      }
+    }
   }
 }

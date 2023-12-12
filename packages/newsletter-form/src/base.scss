@@ -19,6 +19,15 @@ $grey-charcoal: hsl(235, 18%, 26%);
 $grey: hsl(231, 7%, 60%);
 $grey-lighter: #dbdbdb;
 $white: hsl(0, 0%, 100%);
+$red: rgba(255,84,118,1);
+$orange: rgba(255,102,65,1);
+
+$error-color: #ed3f2d;
+$error-placeholder-color: #e68582;
+$error-border-color: #ca948e;
+$error-bg-color: #ffe8e6;
+
+$font-family: 'Roboto';
 
 $font-size-paragraph: 15px;
 $font-size-title: 45px;
@@ -26,12 +35,14 @@ $font-size-label: 11px;
 
 $border-radius-components: 6px;
 
-$padding-components: 15px;
+$padding-components: 17px;
 $padding-containers: 15px;
 
-$border-radius: 10px;
+$border-radius: 20px;
 
 $line-height-paragraph: 24px; 
+
+$transition-time: 0.25s;
 
 $mobileBreakpoint: 675px;
 
